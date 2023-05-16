@@ -1,0 +1,4 @@
+../Core/Src/Ass-03-TouchTask.c:23:6:StartTouchTask	32	static
+../Core/Src/Ass-03-TouchTask.c:51:6:welcomeState_Touch	8	static
+../Core/Src/Ass-03-TouchTask.c:76:6:registerState_Touch	4	static
+../Core/Src/Ass-03-TouchTask.c:80:6:loginState_Touch	4	static

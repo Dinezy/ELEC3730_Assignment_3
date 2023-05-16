@@ -53,6 +53,8 @@ osThreadId controlTaskHandle;
 osThreadId touchTaskHandle;
 osThreadId cameraTaskHandle;
 osThreadId SDTaskHandle;
+osMutexId LCDAccessHandle;
+osMutexId TouchScreenAccessHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -109,6 +111,14 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
+  /* Create the mutex(es) */
+  /* definition and creation of LCDAccess */
+  osMutexDef(LCDAccess);
+  LCDAccessHandle = osMutexCreate(osMutex(LCDAccess));
+
+  /* definition and creation of TouchScreenAccess */
+  osMutexDef(TouchScreenAccess);
+  TouchScreenAccessHandle = osMutexCreate(osMutex(TouchScreenAccess));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
