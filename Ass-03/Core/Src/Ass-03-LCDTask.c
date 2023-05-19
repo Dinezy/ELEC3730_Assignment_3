@@ -20,6 +20,7 @@ char save[5] = {'S','A','V','E',0}; // String for "Save" button
 char ENTER[9] = {'E','N','T','E','R',' ', 'I','D',0};
 char PIN[10] = {'E','N','T','E','R',' ','P','I','N',0};
 
+uint32_t EVENTLCD;
 
 void drawWelcomeScreen(void);
 void drawRegisterScreen(void);
@@ -42,6 +43,7 @@ void StartLCDTask(void const * argument)
 	//drawPinScreen();
 
 	osSignalSet(touchTaskHandle, LCD_INIT);
+	osSignalSet(cameraTaskHandle, LCD_INIT);
 
 
 
@@ -49,6 +51,24 @@ void StartLCDTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+
+	  EVENTLCD = osMessageGet(LCDUpdateQueueHandle,0).value.v;
+
+	//What event was it
+
+	switch(EVENTLCD){
+	case LCD_WELC_EVENT:
+		drawWelcomeScreen();
+		break;
+	case LCD_REG_EVENT:
+		drawRegisterScreen();
+		break;
+	case LCD_LOGIN_EVENT:
+		drawPinScreen();
+		break;
+	}
+
+
     osDelay(100);
   }
   /* USER CODE END StartLCDTask */

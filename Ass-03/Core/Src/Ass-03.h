@@ -16,6 +16,7 @@
 #include "openx07v_c_lcd.h"
 #include "fatfs.h"
 #include "dcmi.h"
+#include "dcmi_ov7670.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -25,6 +26,8 @@
 #define BUTTONHEIGHT 30
 #define SCREENHEIGHT 240 // replace with your actual screen height
 #define SCREENWIDTH 320  // replace with your actual screen width
+#define BUFFER_LEN SCREENWIDTH
+
 
 // RTOS Handles
 extern osThreadId defaultTaskHandle;
@@ -36,7 +39,12 @@ extern osThreadId SDTaskHandle;
 
 extern osMutexId LCDAccessHandle;
 extern osMutexId TouchScreenAccessHandle;
+extern osMutexId ConsolAccessHandle;
+extern osMutexId FrameDMAAccessHandle;
 
+
+extern osMessageQId stateMachineQueueHandle;
+extern osMessageQId LCDUpdateQueueHandle;
 //LCD States
 extern uint32_t LCD_State;
 
@@ -44,9 +52,16 @@ extern uint32_t LCD_State;
 #define LCD_REGIS 2
 #define LCD_LOG 3
 
+#define LCD_WELC_EVENT 1
+#define LCD_REG_EVENT 2
+#define LCD_LOGIN_EVENT 3
+
+
 
 //Message Queue defines
 #define LCD_INIT 0x00000001
+
+
 
 
 

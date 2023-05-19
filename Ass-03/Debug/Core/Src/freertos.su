@@ -1,9 +1,0 @@
-../Core/Src/freertos.c:83:6:vApplicationGetIdleTaskMemory	24	static
-../Core/Src/freertos.c:96:6:vApplicationGetTimerTaskMemory	24	static
-../Core/Src/freertos.c:110:6:MX_FREERTOS_Init	200	static
-../Core/Src/freertos.c:177:6:StartDefaultTask	16	static
-../Core/Src/freertos.c:195:13:StartLCDTask	16	static
-../Core/Src/freertos.c:213:13:StartControlTask	16	static
-../Core/Src/freertos.c:231:13:StartTouchTask	16	static
-../Core/Src/freertos.c:249:13:StartCameraTask	16	static
-../Core/Src/freertos.c:267:13:StartSDTask	16	static

@@ -53,8 +53,12 @@ osThreadId controlTaskHandle;
 osThreadId touchTaskHandle;
 osThreadId cameraTaskHandle;
 osThreadId SDTaskHandle;
+osMessageQId stateMachineQueueHandle;
+osMessageQId LCDUpdateQueueHandle;
 osMutexId LCDAccessHandle;
 osMutexId TouchScreenAccessHandle;
+osMutexId ConsolAccessHandle;
+osMutexId FrameDMAAccessHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -120,6 +124,14 @@ void MX_FREERTOS_Init(void) {
   osMutexDef(TouchScreenAccess);
   TouchScreenAccessHandle = osMutexCreate(osMutex(TouchScreenAccess));
 
+  /* definition and creation of ConsolAccess */
+  osMutexDef(ConsolAccess);
+  ConsolAccessHandle = osMutexCreate(osMutex(ConsolAccess));
+
+  /* definition and creation of FrameDMAAccess */
+  osMutexDef(FrameDMAAccess);
+  FrameDMAAccessHandle = osMutexCreate(osMutex(FrameDMAAccess));
+
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
@@ -131,6 +143,15 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
+
+  /* Create the queue(s) */
+  /* definition and creation of stateMachineQueue */
+  osMessageQDef(stateMachineQueue, 16, uint16_t);
+  stateMachineQueueHandle = osMessageCreate(osMessageQ(stateMachineQueue), NULL);
+
+  /* definition and creation of LCDUpdateQueue */
+  osMessageQDef(LCDUpdateQueue, 16, uint16_t);
+  LCDUpdateQueueHandle = osMessageCreate(osMessageQ(LCDUpdateQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */

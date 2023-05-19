@@ -1,5 +1,0 @@
-../Core/Src/Ass-03-LCDTask.c:29:6:StartLCDTask	16	static
-../Core/Src/Ass-03-LCDTask.c:57:6:drawWelcomeScreen	16	static
-../Core/Src/Ass-03-LCDTask.c:86:6:drawRegisterScreen	32	static
-../Core/Src/Ass-03-LCDTask.c:127:6:drawUserScreen	32	static
-../Core/Src/Ass-03-LCDTask.c:172:6:drawPinScreen	32	static

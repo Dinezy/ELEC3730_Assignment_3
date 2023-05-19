@@ -55,22 +55,17 @@ void welcomeState_Touch(void){
 	//Register Button
 	if(display.x >= (SCREENWIDTH / 2) - BUTTONWIDTH - 10 && display.x <= (SCREENWIDTH / 2) - 10 &&
 	       display.y >= SCREENHEIGHT - BUTTONHEIGHT - 10 && display.y <= SCREENHEIGHT - 10) {
-	      // Handle button 1 press
-	      //handleButton1Press();
-	      printf("but1\n");
+		osMessagePut(stateMachineQueueHandle,LCD_REG_EVENT,0);
+		osDelay(500);
 	}
 	//Login Button
 	if(display.x >= (SCREENWIDTH / 2) + 10 && display.x <= (SCREENWIDTH / 2) + BUTTONWIDTH + 10 &&
 	            display.y >= SCREENHEIGHT - BUTTONHEIGHT - 10 && display.y <= SCREENHEIGHT - 10) {
-	      // Handle button 2 press
-	      //handleButton2Press();
-	      printf("but2\n");
+		osMessagePut(stateMachineQueueHandle,LCD_LOGIN_EVENT,0);
+		osDelay(500);
 	    }
 
 	osMutexRelease(TouchScreenAccessHandle);
-
-
-
 }
 
 void registerState_Touch(void){
